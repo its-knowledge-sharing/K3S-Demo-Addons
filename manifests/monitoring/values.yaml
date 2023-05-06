@@ -1,0 +1,13 @@
+kube-prometheus-stack:
+  enabled: true
+  fullnameOverride: prometheus
+
+  prometheus-node-exporter:
+    hostRootFsMount:
+      enabled: false
+
+  grafana:
+    admin:
+      existingSecret: "grafana-credentials"
+      userKey: GRAFANA_USER
+      passwordKey: GRAFANA_PASSWORD

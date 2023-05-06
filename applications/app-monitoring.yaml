@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          custom: "true"
+  template:
+    metadata:
+      name: 'monitoring-{{name}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+        targetRevision: "{{name}}" #Based on environment
+        path: 'manifests/monitoring'
+        helm:
+          skipCrds: true
+      destination:
+        name: in-cluster
+        namespace: monitoring
+      syncPolicy:
+        automated:
+          selfHeal: false
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
