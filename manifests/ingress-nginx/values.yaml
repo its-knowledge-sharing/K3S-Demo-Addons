@@ -5,4 +5,3 @@ ingress-nginx:
     service:
       enabled: true
       type: NodePort
-      NodePort: 32566
