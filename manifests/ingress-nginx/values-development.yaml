@@ -1,0 +1,2 @@
+domain: promrub-np.cybertracx.com
+backendService: ingress-nginx-development-controller

@@ -1,0 +1,7 @@
+ingress-nginx:
+  enabled: true
+
+  controller:
+    service:
+      enabled: true
+      type: NodePort
