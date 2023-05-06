@@ -1,0 +1,37 @@
+domain: ''
+
+loki-stack:
+  enabled: true
+  test_pod:
+    enabled: false
+  promtail:
+    fullnameOverride: promtail
+    config:
+      clients:
+        - url: http://loki-log:3100/loki/api/v1/push
+  loki:
+    fullnameOverride: loki-log
+    persistence:
+      enabled: false
+    config:
+    alerting_groups: []
+
+  grafana:
+    enabled: true
+    fullnameOverride: loki-log-grafana
+    envRenderSecret: {}
+    admin:
+      existingSecret: "grafana-credentials"
+      userKey: GRAFANA_USER
+      passwordKey: GRAFANA_PASSWORD
+    image:
+      tag: 8.5.13
+    #grafana.ini:
+    #  server:
+    #    root_url: grafana-loki.rtarf-ml.its-software-services.com
+    grafana.ini:
+      log:
+        level: debug
+      #server:
+        #root_url: https://grafana-loki.rtarf-ml.its-software-services.com
+        #domain: grafana-loki.rtarf-ml.its-software-services.com
