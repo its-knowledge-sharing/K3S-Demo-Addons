@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: external-secrets
+  name: cert-manager
 spec:
   generators:
   - clusters:
@@ -10,16 +10,16 @@ spec:
           custom: "true"
   template:
     metadata:
-      name: 'external-secrets-{{name}}'
+      name: 'cert-manager-{{name}}'
     spec:
       project: "default"
       source:
         repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
         targetRevision: "{{name}}" #Based on environment
-        path: 'manifests/external-secrets'
+        path: 'manifests/cert-manager'
       destination:
         name: in-cluster
-        namespace: external-secrets
+        namespace: cert-manager
       syncPolicy:
         automated:
           selfHeal: false

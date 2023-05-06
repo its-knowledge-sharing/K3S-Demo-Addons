@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt-issuer-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    preferredChain: "ISRG Root X1"
+    email: pjame.fb@gmail.com
+    privateKeySecretRef:
+      name: lets-encrypt-issuer-prod-key # The operator will create this for us
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

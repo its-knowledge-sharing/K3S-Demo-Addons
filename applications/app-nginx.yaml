@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: external-secrets
+  name: ingress-nginx
 spec:
   generators:
   - clusters:
@@ -10,19 +10,24 @@ spec:
           custom: "true"
   template:
     metadata:
-      name: 'external-secrets-{{name}}'
+      name: 'ingress-nginx-{{name}}'
     spec:
       project: "default"
       source:
         repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
         targetRevision: "{{name}}" #Based on environment
-        path: 'manifests/external-secrets'
+        path: 'manifests/ingress-nginx'
+        helm:
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - values.yaml
+            - values-{{name}}.yaml
       destination:
         name: in-cluster
-        namespace: external-secrets
+        namespace: ingress-nginx
       syncPolicy:
         automated:
-          selfHeal: false
+          selfHeal: true
           prune: true
         syncOptions:
           - CreateNamespace=true

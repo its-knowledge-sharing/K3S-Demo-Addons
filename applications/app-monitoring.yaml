@@ -14,7 +14,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+        repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
         targetRevision: "{{name}}" #Based on environment
         path: 'manifests/monitoring'
         helm:
