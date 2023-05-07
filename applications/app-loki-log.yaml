@@ -17,6 +17,11 @@ spec:
         repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
         targetRevision: "{{name}}" #Based on environment
         path: 'manifests/loki-log'
+        helm:
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - values.yaml
+            - values-{{name}}.yaml
       destination:
         name: in-cluster
         namespace: loki-log
