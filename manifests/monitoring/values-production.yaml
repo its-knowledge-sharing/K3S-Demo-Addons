@@ -1,4 +1,5 @@
 domain: grafana-k8s.promrub.its-software-services.com
+environment: production
 
 kube-prometheus-stack:
   grafana:
