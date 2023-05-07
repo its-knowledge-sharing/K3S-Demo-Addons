@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argocd-ing
-  namespace: argocd
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP  
     kubernetes.io/ingress.class: "nginx"
@@ -10,7 +9,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.domain }}
-      secretName: grafana-k8s-cert
+      secretName: argocd-cert
   rules:
     - host: {{ .Values.domain }}
       http:
@@ -19,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: monitoring-{{ .Values.environment }}-grafana
+                name: argocd-server
                 port:
                   number: 80
