@@ -1,4 +1,4 @@
-domain: ''
+domain: grafana-loki.promrub-np.its-software-services.com
 
 loki-stack:
   enabled: true
@@ -28,10 +28,10 @@ loki-stack:
       tag: 8.5.13
     #grafana.ini:
     #  server:
-    #    root_url: grafana-loki.rtarf-ml.its-software-services.com
+    #    root_url: grafana-loki.promrub-np.its-software-services.com
     grafana.ini:
       log:
         level: debug
-      #server:
-        #root_url: https://grafana-loki.rtarf-ml.its-software-services.com
-        #domain: grafana-loki.rtarf-ml.its-software-services.com
+      server:
+        root_url: https://grafana-loki.promrub-np.its-software-services.com
+        domain: grafana-loki.promrub-np.its-software-services.com

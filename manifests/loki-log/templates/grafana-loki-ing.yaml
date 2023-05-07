@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-loki-ing
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP  
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+    - hosts:
+      - {{ .Values.domain }}
+      secretName: grafana-loki-cert
+  rules:
+    - host: {{ .Values.domain }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: loki-log-grafana
+                port:
+                  number: 80
