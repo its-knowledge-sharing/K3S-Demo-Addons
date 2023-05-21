@@ -2,3 +2,7 @@ kong:
   enabled: true
   proxy:
     type: ClusterIP
+
+  admin:
+    enabled: true
+    type: ClusterIP
