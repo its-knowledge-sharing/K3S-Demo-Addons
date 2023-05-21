@@ -7,6 +7,8 @@ kong:
   admin:
     enabled: true
     type: ClusterIP
+    http:
+      enabled: true
 
 konga:
   fullnameOverride: konga
