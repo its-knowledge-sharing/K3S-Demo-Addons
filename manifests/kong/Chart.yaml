@@ -10,7 +10,8 @@ dependencies:
     repository: "https://charts.konghq.com"
     condition: kong.enabled
 
-  - name: konga
-    version: "1.0.0"
-    repository: "https://lakshanmamalgaha96.github.io/konga-helm"
+  - name: "generic-app"
+    alias: konga
     condition: konga.enabled
+    repository: "https://charts.visonneau.fr/"
+    version: "0.0.14"
