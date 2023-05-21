@@ -1,8 +1,11 @@
 kong:
-  enabled: true
+  enabled: false # true
   proxy:
     type: ClusterIP
 
   admin:
     enabled: true
     type: ClusterIP
+
+konga:
+  enabled: true
