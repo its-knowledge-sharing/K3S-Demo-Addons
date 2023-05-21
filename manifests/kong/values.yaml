@@ -1,5 +1,5 @@
 kong:
-  enabled: false # true
+  enabled: true
   proxy:
     type: ClusterIP
 
