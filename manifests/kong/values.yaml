@@ -1,5 +1,6 @@
 kong:
   enabled: true
+  fullnameOverride: kong
   proxy:
     type: ClusterIP
 
@@ -8,4 +9,5 @@ kong:
     type: ClusterIP
 
 konga:
+  fullnameOverride: konga
   enabled: true
