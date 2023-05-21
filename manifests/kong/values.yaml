@@ -25,8 +25,19 @@ konga:
         containerPort: 1337
         protocol: TCP
     env:
-      - name: ASPNETCORE_ENVIRONMENT
-        value: "Development"
+      - name: KONGA_SEED_USER_DATA_SOURCE_FILE
+        value: /configs/konga-users.cfg
+
+      - name: KONGA_SEED_KONG_NODE_DATA_SOURCE_FILE
+        value: konga-nodes.cfg
+    volumes:
+      - name: config
+        secret:
+          secretName: konga-credentials
+          optional: false
+    volumeMounts:
+      - name: config
+        mountPath: /configs
   ingress:
     enabled: false
 
