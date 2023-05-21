@@ -1,0 +1,11 @@
+apiVersion: v2
+name: helm-kong
+version: 1.0.0
+appVersion: 1.25.0
+description: A Helm chart wrapper for Kong
+
+dependencies:
+  - name: kong
+    version: "2.22.0"
+    repository: "https://charts.konghq.com"
+    condition: kong.enabled
