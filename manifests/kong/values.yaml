@@ -29,7 +29,7 @@ konga:
         value: /configs/konga-users.cfg
 
       - name: KONGA_SEED_KONG_NODE_DATA_SOURCE_FILE
-        value: konga-nodes.cfg
+        value: /configs/konga-nodes.cfg
     volumes:
       - name: config
         secret:
