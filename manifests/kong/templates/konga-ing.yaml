@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: konga
+                name: kong-{{ .Values.env }}-konga
                 port:
                   number: 80
