@@ -1,2 +1,4 @@
 kong:
   enabled: true
+  proxy:
+    type: ClusterIP
