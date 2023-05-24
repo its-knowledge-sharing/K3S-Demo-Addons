@@ -8,9 +8,9 @@ data:
     _transform: true
 
     services:
-    - name: echo-service
+    - name: scb-service
       url: https://promrub-scb.prom.co.th/
       routes:
-      - name: echo
+      - name: default
         paths:
-        - /echo
+        - /scb
