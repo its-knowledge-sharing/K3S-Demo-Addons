@@ -11,13 +11,13 @@ data:
     - name: scb-service
       url: https://promrub-scb.prom.co.th/
       routes:
-      - name: default
+      - name: scb
         paths:
         - /scb
 
     - name: google-service
       url: https://google.com/
       routes:
-      - name: default
+      - name: google
         paths:
         - /google
