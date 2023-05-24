@@ -4,6 +4,15 @@ kong:
   proxy:
     type: ClusterIP
 
+  dblessConfig:
+    configMap: kong-config
+
+  env:
+    database: "off"
+
+  ingressController:
+    enabled: false # This is required in DB less mode
+
   admin:
     enabled: true
     type: ClusterIP
@@ -12,7 +21,7 @@ kong:
 
 konga:
   nameOverride: konga
-  enabled: true
+  enabled: false # true
   podDisruptionBudget:
     enabled: false
   pods:
