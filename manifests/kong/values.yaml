@@ -10,6 +10,9 @@ kong:
   env:
     database: "off"
 
+  customEnv:
+    DUMMY: "002" #Update this when Kong configuration is changed in order to restart the pods
+
   ingressController:
     enabled: false # This is required in DB less mode
 
