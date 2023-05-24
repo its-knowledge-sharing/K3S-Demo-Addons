@@ -8,6 +8,7 @@ data:
     _transform: true
 
     services:
+    # TODO : Path rewrite
     - name: scb-service
       url: https://promrub-scb.prom.co.th/
       routes:
