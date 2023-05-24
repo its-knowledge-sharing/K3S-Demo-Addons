@@ -13,11 +13,11 @@ data:
       routes:
       - name: scb
         paths:
-        - /scb
+        - /scb/
 
     - name: google-service
       url: https://google.com/
       routes:
       - name: google
         paths:
-        - /google
+        - /google/
