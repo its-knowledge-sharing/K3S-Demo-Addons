@@ -14,3 +14,10 @@ data:
       - name: default
         paths:
         - /scb
+
+    - name: google-service
+      url: https://google.com/
+      routes:
+      - name: default
+        paths:
+        - /google
