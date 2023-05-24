@@ -13,6 +13,7 @@ data:
       url: https://promrub-scb.prom.co.th/
       routes:
       - name: scb
+        strip_path: true
         paths:
         - /scb/
 
@@ -20,5 +21,6 @@ data:
       url: https://google.com/
       routes:
       - name: google
+        strip_path: true
         paths:
         - /google/
