@@ -21,7 +21,7 @@ kong:
 
 konga:
   nameOverride: konga
-  enabled: false # true
+  enabled: true
   podDisruptionBudget:
     enabled: false
   pods:
