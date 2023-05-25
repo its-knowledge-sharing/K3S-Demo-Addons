@@ -26,7 +26,7 @@ data:
 
     - name: echo-service
       # TODO : Change this per environment
-      url: http://echo-development.echo.svc.cluster.local/
+      url: http://echo-{{ .Values.env }}.echo.svc.cluster.local/
       routes:
       - name: echo
         strip_path: true
