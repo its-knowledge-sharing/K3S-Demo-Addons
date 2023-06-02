@@ -1,0 +1,62 @@
+kong:
+  enabled: true
+  fullnameOverride: kong
+  proxy:
+    type: ClusterIP
+
+  dblessConfig:
+    configMap: kong-config
+
+  env:
+    database: "off"
+
+  customEnv:
+    DUMMY: "006" #Update this when Kong configuration is changed in order to restart the pods
+
+  ingressController:
+    enabled: false # This is required in DB less mode
+
+  admin:
+    enabled: true
+    type: ClusterIP
+    http:
+      enabled: true
+
+konga:
+  nameOverride: konga
+  enabled: true
+  podDisruptionBudget:
+    enabled: false
+  pods:
+    controller: deployment
+    image:
+      name: "pantsel/konga"
+      tag: "latest"
+    ports:
+      - name: http
+        containerPort: 1337
+        protocol: TCP
+    env:
+      - name: KONGA_SEED_USER_DATA_SOURCE_FILE
+        value: /configs/konga-users.cfg
+
+      - name: KONGA_SEED_KONG_NODE_DATA_SOURCE_FILE
+        value: /configs/konga-nodes.cfg
+    volumes:
+      - name: config
+        secret:
+          secretName: konga-credentials
+          optional: false
+    volumeMounts:
+      - name: config
+        mountPath: /configs
+  ingress:
+    enabled: false
+
+  service:
+    enabled: true
+    ports:
+      - port: 80
+        targetPort: 1337
+        protocol: TCP
+        name: http

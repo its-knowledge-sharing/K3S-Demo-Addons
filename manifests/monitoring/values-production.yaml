@@ -1,0 +1,12 @@
+domain: grafana-k8s.promrub.its-software-services.com
+environment: production
+
+kube-prometheus-stack:
+  grafana:
+    grafana.ini:
+      server:
+        root_url: grafana-k8s.promrub.its-software-services.com
+    grafana.ini:
+      server:
+        root_url: https://grafana-k8s.promrub.its-software-services.com
+        domain: grafana-k8s.promrub.its-software-services.com

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: loki-log
+  name: echo
 spec:
   generators:
   - clusters:
@@ -10,13 +10,13 @@ spec:
           custom: "true"
   template:
     metadata:
-      name: 'loki-log-{{name}}'
+      name: 'echo-{{name}}'
     spec:
       project: "default"
       source:
         repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
         targetRevision: "{{name}}" #Based on environment
-        path: 'manifests/loki-log'
+        path: 'manifests/echo'
         helm:
           ignoreMissingValueFiles: true
           valueFiles:
@@ -24,10 +24,10 @@ spec:
             - values-{{name}}.yaml
       destination:
         name: in-cluster
-        namespace: loki-log
+        namespace: echo
       syncPolicy:
         automated:
-          selfHeal: false
+          selfHeal: true
           prune: true
         syncOptions:
           - CreateNamespace=true

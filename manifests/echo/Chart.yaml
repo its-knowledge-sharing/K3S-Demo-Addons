@@ -1,0 +1,12 @@
+apiVersion: v2
+name: helm-echo
+version: 1.0.0
+appVersion: 1.25.0
+description: A Helm chart wrapper for Echo
+
+dependencies:
+  - name: "generic-app"
+    alias: echo
+    condition: echo.enabled
+    repository: "https://charts.visonneau.fr/"
+    version: "0.0.14"

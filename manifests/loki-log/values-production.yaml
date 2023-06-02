@@ -1,0 +1,11 @@
+domain: grafana-loki.promrub.its-software-services.com
+
+loki-stack:
+  grafana:
+    grafana.ini:
+      server:
+        root_url: grafana-loki.promrub.its-software-services.com
+    grafana.ini:
+      server:
+        root_url: https://grafana-loki.promrub.its-software-services.com
+        domain: grafana-loki.promrub.its-software-services.com
