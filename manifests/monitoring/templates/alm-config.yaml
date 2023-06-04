@@ -22,4 +22,4 @@ spec:
     groupWait: 30s
     receiver: slack-notifications
     repeatInterval: 4h
-    continue: false
+    continue: 'false'
