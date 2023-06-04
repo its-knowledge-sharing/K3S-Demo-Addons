@@ -15,7 +15,9 @@ spec:
     groupBy:
       - alertname
     matchers:
-    - namespace=~".+"
+      - matchType: =~
+        name: alertname
+        value: .+
     groupInterval: 5m
     groupWait: 30s
     receiver: slack-notifications
