@@ -12,6 +12,7 @@ spec:
             key: slack-webhook-url
           username: AlertManager
   route:
+    globalConfig: true
     groupBy:
       - alertname
     matchers:
