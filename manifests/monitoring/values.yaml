@@ -11,3 +11,10 @@ kube-prometheus-stack:
       existingSecret: "grafana-credentials"
       userKey: GRAFANA_USER
       passwordKey: GRAFANA_PASSWORD
+
+  alertmanager:
+    # To allow AlertManger to be used globally (for all namespace)
+    # https://github.com/sighupio/fury-kubernetes-monitoring/issues/132#issuecomment-1471854800
+    alertmanagerSpec:
+      alertmanagerConfigMatcherStrategy:
+        type: None
