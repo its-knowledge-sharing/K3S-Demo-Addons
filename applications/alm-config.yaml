@@ -1,0 +1,103 @@
+---
+# Note : Put this in the application folder because we don't want Helm to render it
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alerts-slack-01
+  namespace: monitoring
+spec:
+  receivers:
+    - name: null-notifications
+    - name: slack-notifications
+      slackConfigs:
+        - channel: "#alarms"
+          apiURL:
+            name: slack-config
+            key: slack-webhook-url
+          username: AlertManager
+          sendResolved: true
+          color: '{{ if eq .Status "firing" -}}{{ if eq .CommonLabels.severity "warning" -}}warning{{- else if eq .CommonLabels.severity "critical" -}}danger{{- else -}}#439FE0{{- end -}}{{ else -}}good{{- end }}'
+          title: |
+            {{/* Title of the Slack alert */}}
+            {{ define "slack.title" -}}
+            [{{ .Status | toUpper -}}
+            {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+            ] {{ .CommonLabels.alertname }}
+            {{- end }}
+            {{ template "slack.title" . }}
+          text: |
+            {{/* Severity of the alert */}}
+            {{ define "__alert_severity" -}}
+                {{- if eq .CommonLabels.severity "critical" -}}
+                *Severity:* `Critical` :red_alert:
+                {{- else if eq .CommonLabels.severity "warning" -}}
+                *Severity:* `Warning` :warning:
+                {{- else if eq .CommonLabels.severity "info" -}}
+                *Severity:* `Info` :information_source:
+                {{- else -}}
+                *Severity:* `Unknown` :question: {{ .CommonLabels.severity }}
+                {{- end }}
+            {{- end }}
+            {{/* The text to display in the alert */}}
+            {{ define "slack.text" -}}
+
+                {{ template "__alert_severity" . }}
+                {{- if (index .Alerts 0).Annotations.summary }}
+                {{- "\n" -}}
+                *Summary:* {{ (index .Alerts 0).Annotations.summary }}
+                {{- end }}
+                {{- if (index .Alerts 0).Labels.namespace }}
+                {{- "\n" -}}
+                *Namespace:* `{{ (index .Alerts 0).Labels.namespace }}`
+                {{- end }}
+                {{ range .Alerts }}
+
+                    {{- if .Annotations.description }}
+                    {{- "\n" -}}
+                    {{ .Annotations.description }}
+                    {{- "\n" -}}
+                    {{- end }}
+                    {{- if .Annotations.message }}
+                    {{- "\n" -}}
+                    {{ .Annotations.message }}
+                    {{- "\n" -}}
+                    {{- end }}
+
+                {{- end }}
+
+            {{- end }}
+            {{ template "slack.text" . }}
+  route:
+    groupBy:
+      - alertname
+    matchers:
+      - matchType: =~
+        name: alertname
+        value: .+
+    groupInterval: 5m
+    groupWait: 30s
+    receiver: null-notifications
+    repeatInterval: 4h
+    routes:
+      - groupBy:
+          - alertname
+        matchers:
+          - matchType: =~
+            name: alertname
+            value: 'KubeControllerManagerDown|KubeProxyDown|KubeSchedulerDown|NodeClockNotSynchronising'
+        groupInterval: 5m
+        groupWait: 30s
+        receiver: null-notifications
+        repeatInterval: 4h
+        continue: false
+      - groupBy:
+          - alertname
+        matchers:
+          - matchType: =~
+            name: alertname
+            value: .+
+        groupInterval: 5m
+        groupWait: 30s
+        receiver: slack-notifications
+        repeatInterval: 4h
+        continue: false
