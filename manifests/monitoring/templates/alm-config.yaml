@@ -12,11 +12,6 @@ spec:
       - matchType: =~
         name: alertname
         value: .+
-    groupInterval: 5m
-    groupWait: 30s
-    receiver: dummy-notifications
-    repeatInterval: 4h
-    continue: true
 ---
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
