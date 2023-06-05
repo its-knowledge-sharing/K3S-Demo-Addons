@@ -1,6 +1,26 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
+  name: alerts-dummy-00 #This make the top level of the tree
+spec:
+  receivers:
+    - name: dummy-notifications
+  route:
+    groupBy:
+      - alertname
+    matchers:
+      - matchType: =~
+        name: alertname
+        value: .+
+    groupInterval: 5m
+    groupWait: 30s
+    receiver: dummy-notifications
+    repeatInterval: 4h
+    continue: true
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
   name: alerts-slack-01
 spec:
   receivers:
