@@ -1,41 +1,10 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: alerts-dummy-01
-spec:
-  receivers:
-    - name: null-notifications
-  route:
-    groupBy:
-      - alertname
-    matchers:
-      - matchType: =~
-        name: alertname
-        value: .+
-    groupInterval: 5m
-    groupWait: 30s
-    receiver: null-notifications
-    repeatInterval: 4h
-    continue: false
-    routes:
-      - groupBy:
-          - alertname
-        matchers:
-          - matchType: =~
-            name: alertname
-            value: 'KubeControllerManagerDown|KubeProxyDown|KubeSchedulerDown'
-        groupInterval: 5m
-        groupWait: 30s
-        receiver: null-notifications
-        repeatInterval: 4h
-        continue: false
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: AlertmanagerConfig
-metadata:
   name: alerts-slack-01
 spec:
   receivers:
+    - name: null-notifications
     - name: slack-notifications
       slackConfigs:
         - channel: "#alarms"
@@ -52,10 +21,21 @@ spec:
         value: .+
     groupInterval: 5m
     groupWait: 30s
-    receiver: slack-notifications
+    receiver: null-notifications
     repeatInterval: 4h
-    continue: false
     routes:
+      - groupBy:
+          - alertname
+        matchers:
+          - matchType: =~
+            name: alertname
+            value: 'KubeControllerManagerDown|KubeProxyDown|KubeSchedulerDown'
+        groupInterval: 5m
+        groupWait: 30s
+        receiver: null-notifications
+        repeatInterval: 4h
+        continue: false
+
       - groupBy:
           - alertname
         matchers:
