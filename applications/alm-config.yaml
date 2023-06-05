@@ -1,3 +1,5 @@
+---
+# Note : Put this in the application folder because we don't want Helm to render it
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
