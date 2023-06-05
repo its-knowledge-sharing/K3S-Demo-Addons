@@ -1,0 +1,50 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alerts-slack-01
+spec:
+  receivers:
+    - name: null-notifications
+    - name: slack-notifications
+      slackConfigs:
+        - channel: "#alarms"
+          apiURL:
+            name: slack-config
+            key: slack-webhook-url
+          username: AlertManager
+          sendResolved: true
+  route:
+    groupBy:
+      - alertname
+    matchers:
+      - matchType: =~
+        name: alertname
+        value: .+
+    groupInterval: 5m
+    groupWait: 30s
+    receiver: null-notifications
+    repeatInterval: 4h
+    routes:
+      - groupBy:
+          - alertname
+        matchers:
+          - matchType: =~
+            name: alertname
+            value: 'KubeControllerManagerDown|KubeProxyDown|KubeSchedulerDown'
+        groupInterval: 5m
+        groupWait: 30s
+        receiver: null-notifications
+        repeatInterval: 4h
+        continue: false
+
+      - groupBy:
+          - alertname
+        matchers:
+          - matchType: =~
+            name: alertname
+            value: .+
+        groupInterval: 5m
+        groupWait: 30s
+        receiver: slack-notifications
+        repeatInterval: 4h
+        continue: false
