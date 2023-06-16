@@ -1,0 +1,14 @@
+{{ if eq .Values.env "production" -}}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pub-cert
+spec:
+  secretName: pub-cert
+  dnsNames:
+    - {{ .Values.domainPub }}
+  issuerRef:
+    name: lets-encrypt-issuer-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+{{- end }}
