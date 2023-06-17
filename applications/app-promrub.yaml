@@ -14,7 +14,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: https://github.com/PROMRUB/PROMRUB-deployment.git
+        repoURL: https://github.com/PROMDevOps/PROMRUB-Deployment.git
         targetRevision: "{{name}}" #Based on environment
         path: 'promrub-common'
         helm:
