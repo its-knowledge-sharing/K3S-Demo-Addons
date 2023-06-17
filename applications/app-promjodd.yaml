@@ -23,6 +23,7 @@ spec:
             - values.yaml
             - values-{{name}}.yaml
             - values-carpark-api-tags-{{name}}.yaml
+            - values-pmt-driver-ui-tags-{{name}}.yaml
       destination:
         name: in-cluster
         namespace: promjodd-{{name}}
