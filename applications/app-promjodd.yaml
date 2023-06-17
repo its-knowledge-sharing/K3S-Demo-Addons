@@ -22,7 +22,7 @@ spec:
           valueFiles:
             - values.yaml
             - values-{{name}}.yaml
-            - values-scb-tags-{{name}}.yaml
+            - values-carpark-api-tags-{{name}}.yaml
       destination:
         name: in-cluster
         namespace: promjodd-{{name}}
