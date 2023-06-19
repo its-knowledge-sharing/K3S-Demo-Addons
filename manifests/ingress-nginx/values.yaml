@@ -3,7 +3,7 @@ ingress-nginx:
 
   controller:
     service:
-      externalTrafficPolicy: "Local"
+      #externalTrafficPolicy: "Local"
       enabled: true
       type: NodePort
       nodePorts:
