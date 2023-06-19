@@ -10,9 +10,9 @@ ingress-nginx:
         https: 32443
         http: 32080
 
-    config:
-      enable-real-ip: "true"
-      use-forwarded-headers: "true"
-      compute-full-forwarded-for: "true"
-      use-proxy-protocol: "true"
-      proxy-add-original-uri-header: "true"
+    #config:
+    #  enable-real-ip: "true"
+    #  use-forwarded-headers: "true"
+    #  compute-full-forwarded-for: "true"
+    #  use-proxy-protocol: "true"
+    #  proxy-add-original-uri-header: "true"
