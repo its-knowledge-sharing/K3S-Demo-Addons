@@ -1,4 +1,4 @@
 strimzi-kafka-operator:
   enabled: true
   watchAnyNamespace: true
-  featureGates: +UseStrimziPodSets,+UseKRaft
+  featureGates: +UseKRaft
