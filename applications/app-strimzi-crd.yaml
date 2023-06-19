@@ -9,7 +9,9 @@ spec:
     namespace: strimzi
   project: default
   source:
-    path: https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.35.1/strimzi-crds-0.35.1.yaml
+    repoURL: https://github.com/strimzi/strimzi-kafka-operator.git
+    path: helm-charts/helm3/strimzi-kafka-operator/crds
+    targetRevision: 0.35.1
     directory:
       recurse: true
   syncPolicy:
