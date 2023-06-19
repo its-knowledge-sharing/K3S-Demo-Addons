@@ -11,7 +11,7 @@ ingress-nginx:
         http: 32080
 
     config:
-    #  enable-real-ip: "true"
+      enable-real-ip: "true"
     #  use-forwarded-headers: "true"
     #  compute-full-forwarded-for: "true"
     #  proxy-add-original-uri-header: "true"
