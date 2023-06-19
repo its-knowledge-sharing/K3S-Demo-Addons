@@ -3,7 +3,7 @@ ingress-nginx:
 
   controller:
     service:
-      externalTrafficPolicy: "Local" # NOT WORK !!!
+      externalTrafficPolicy: "Local" #To make real-ip works, need to restart pod
       enabled: true
       type: NodePort
       nodePorts:
@@ -12,6 +12,3 @@ ingress-nginx:
 
     config:
       enable-real-ip: "true"
-    #  use-forwarded-headers: "true"
-    #  compute-full-forwarded-for: "true"
-    #  proxy-add-original-uri-header: "true"
