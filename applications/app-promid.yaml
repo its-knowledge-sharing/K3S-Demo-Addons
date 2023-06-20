@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: kong
+  name: promid
 spec:
   generators:
   - clusters:
@@ -10,13 +10,13 @@ spec:
           custom: "true"
   template:
     metadata:
-      name: 'kong-{{name}}'
+      name: 'promid-{{name}}'
     spec:
       project: "default"
       source:
-        repoURL: https://github.com/PROMDevOps/PROM-K3S-Addons.git
+        repoURL: https://github.com/PROMDevOps/PROMID-Deployment.git
         targetRevision: "{{name}}" #Based on environment
-        path: 'manifests/kong'
+        path: 'promid-common'
         helm:
           ignoreMissingValueFiles: true
           valueFiles:
@@ -24,7 +24,7 @@ spec:
             - values-{{name}}.yaml
       destination:
         name: in-cluster
-        namespace: kong
+        namespace: promid-{{name}}
       syncPolicy:
         automated:
           selfHeal: true
