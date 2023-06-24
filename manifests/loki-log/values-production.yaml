@@ -1,11 +1,11 @@
-domain: grafana-loki.prom-prod.devops.prom.co.th
+domain: grafana-loki.k3s-demo.its-software-services.com
 
 loki-stack:
   grafana:
     grafana.ini:
       server:
-        root_url: grafana-loki.prom-prod.devops.prom.co.th
+        root_url: grafana-loki.k3s-demo.its-software-services.com
     grafana.ini:
       server:
-        root_url: https://grafana-loki.prom-prod.devops.prom.co.th
-        domain: grafana-loki.prom-prod.devops.prom.co.th
+        root_url: https://grafana-loki.k3s-demo.its-software-services.com
+        domain: grafana-loki.k3s-demo.its-software-services.com

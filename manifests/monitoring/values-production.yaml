@@ -1,6 +1,6 @@
-domain: grafana-k8s.prom-prod.devops.prom.co.th
-domain1: alm.prom-prod.devops.prom.co.th
-domain2: prom.prom-prod.devops.prom.co.th
+domain: grafana-k8s.k3s-demo.its-software-services.com
+domain1: alm.k3s-demo.its-software-services.com
+domain2: prom.k3s-demo.its-software-services.com
 
 environment: production
 
@@ -8,8 +8,8 @@ kube-prometheus-stack:
   grafana:
     grafana.ini:
       server:
-        root_url: grafana-k8s.prom-prod.devops.prom.co.th
+        root_url: grafana-k8s.k3s-demo.its-software-services.com
     grafana.ini:
       server:
-        root_url: https://grafana-k8s.prom-prod.devops.prom.co.th
-        domain: grafana-k8s.prom-prod.devops.prom.co.th
+        root_url: https://grafana-k8s.k3s-demo.its-software-services.com
+        domain: grafana-k8s.k3s-demo.its-software-services.com
